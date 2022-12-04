@@ -1,0 +1,78 @@
+cabal-version:   3.4
+name:            miniml
+version:         0.1.0.0
+
+-- synopsis:
+-- description:
+license:         BSD-3-Clause
+license-file:    LICENSE
+
+-- author:
+-- maintainer:
+-- copyright:
+category:        Language
+build-type:      Simple
+extra-doc-files: CHANGELOG.md
+
+-- extra-source-files:
+
+common options
+  ghc-options:        -Wall
+  default-language:   GHC2021
+  default-extensions:
+    NoStarIsType
+    DataKinds
+    DeriveAnyClass
+    DerivingStrategies
+    DerivingVia
+    DuplicateRecordFields
+    LambdaCase
+    OverloadedLabels
+    OverloadedRecordDot
+    OverloadedStrings
+    PackageImports
+    PolyKinds
+    QuasiQuotes
+    RecordWildCards
+    StrictData
+    TypeFamilies
+    UndecidableInstances
+    ViewPatterns
+
+library
+  import:             options
+  hs-source-dirs:     src
+  build-tool-depends:
+    , alex:alex    ^>=3.2
+    , happy:happy  ^>=1.20
+
+  build-depends:
+    , array
+    , base
+    , bytestring
+
+  exposed-modules:
+    Lexer
+    Parser
+
+executable miniml
+  import:         options
+  main-is:        Main.hs
+  build-depends:
+    , base    ^>=4.16
+    , miniml
+
+  hs-source-dirs: app
+
+test-suite miniml-test
+  import:         options
+  main-is:        Main.hs
+  type:           exitcode-stdio-1.0
+  build-depends:
+    , base
+    , miniml
+    , tasty
+    , tasty-hunit
+
+  hs-source-dirs: test
+  other-modules:  Test.Parsing
