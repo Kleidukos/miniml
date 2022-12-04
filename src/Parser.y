@@ -184,9 +184,10 @@ L.Range a1 _ <-> L.Range _ b2 = L.Range a1 b2
 -- * AST
 
 data Name a = Name
- { nameMetatada :: a
- , content :: ByteString
- } deriving (Eq, Foldable, Show)
+  { range :: a
+  , content :: ByteString
+  }
+  deriving (Eq, Foldable, Show)
 
 data Type a
   = TVar a (Name a)
@@ -201,7 +202,7 @@ data Argument a
   deriving (Eq, Foldable, Show)
 
 data Dec a = Dec
-  { metadata :: a -- ^ Metadata like Range
+  { decMetadata :: a -- ^ Metadata like Range
   , name :: Name a -- ^ Name of the declaration
   , arguments :: [Argument a] -- ^ Arguments list
   , mTypeSignature :: (Maybe (Type a)) -- ^ Optional type signature

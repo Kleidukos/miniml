@@ -21,6 +21,7 @@ common options
   default-language:   GHC2021
   default-extensions:
     NoStarIsType
+    NoStrictData
     DataKinds
     DeriveAnyClass
     DerivingStrategies
@@ -34,7 +35,6 @@ common options
     PolyKinds
     QuasiQuotes
     RecordWildCards
-    StrictData
     TypeFamilies
     UndecidableInstances
     ViewPatterns
